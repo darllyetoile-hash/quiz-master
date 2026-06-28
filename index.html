@@ -1,0 +1,80 @@
+  <!DOCTYPE html>
+<html lang="fr"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> QuizMaster - L'App de Révisions Ultime </title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <style>
+        /* Sécurité si Tailwind est bloqué par le navigateur */
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <div id="chrono-badge" class="quiz-header hidden">
+            <div class="timer-box">
+                <div class="timer-circle"></div>
+                <span id="timer-count">15s</span>
+            </div>
+        </div>
+        <div id="screen-welcome">
+            <h1 class="question-text" style="text-align: center; font-size: 2rem;"> QuizMaster</h1>
+            <p style="text-align: center; color: var(--text-muted); margin-bottom: 25px;">Prêt pour les révisons ? Choisis ton niveau et ta matière.</p>
+            <div style="margin-bottom: 20px;">
+                <span style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">1. Choisis ton niveau :</span>
+                <div class="options-list" style="flex-direction: row; gap: 10px; margin-top: 8px;">
+                    <button id="btn-college" class="option-item correct" style="flex: 1; text-align: center; justify-content: center;">Collège</button> 
+                    <button id="btn-lycee" class="option-item correct" style="flex: 1; text-align: center; justify-content: center;"> Lycée</button>
+                </div>
+            </div>
+            <div>
+                <span style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">2. Choisis ta matière :</span>
+                <div class="options-list" style="margin-top: 8px;">
+                    <button id="btn-anglais" class="option-item" disabled> Anglais</button>
+                    <button id="btn-physique" class="option-item" disabled> Physique</button>
+                    <button id="btn-maths" class="option-item" disabled> Maths</button>
+                    <button id="btn-chimie" class="option-item" disabled> Chimie</button>
+                </div>
+            </div>
+        </div> 
+        <div id="screen-quiz" class="hidden">
+            <div class="progress-container">
+                <div id="progress-bar" class="progress-bar" style="width: 0%;"></div>
+            </div>
+            <h2 id="question-text" class="question-text">Chargement de la question...</h2>
+            <div id="options-container" class="options-list">
+            </div>
+        </div>
+         <div id="screen-results" style="display: none;">
+            <h2 style="text-align: center;"> Fin du Quiz !</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 20px;">
+                Ton score est de : <span id="final-score" style="color: var(--accent-color); font-weight: bold;">0/0</span>
+            </p>
+            <div id="score-submission" class="options-list" style="gap: 10px; margin-bottom: 25px;">
+                <input type="text id=username" placeholder="Entre ton pseudo..." style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 12px; border-radius: var(--radius); color: white; width: 100%; font-size: 1rem;">
+                <button onclick="submitScore()" class="btn-next" style="width: 100%; border-radius: var(--radius);">Enregistrer mon score</button>
+            </div>
+            <h3 style="font-size: 1.1rem; margin-bottom: 10px;">Meilleurs scores <span id="leaderboard-subject" style="color: var(--text-muted); font-size: 0.9rem;"></span></h3>
+            <div style="background: rgba(0,0,0,0.2); border-radius: var(--radius); overflow: hidden; margin-bottom: 20px;">
+                <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.95rem;">
+                    <thead>
+                        <tr style="background: rgba(255,255,255,0.05); color: var(--text-muted);">
+                            <th style="padding: 10px;">Rang</th>
+                            <th style="padding: 10px;">Joueur</th>
+                            <th style="padding: 10px; text-align: right;">Score</th>
+                        </tr>
+                    </thead><tbody id="leaderboard-body">
+                    </tbody>
+                </table>
+            </div>
+            <button onclick="goToHome()" class="btn-next" style="width: 100%; background: transparent; border: 1px solid var(--accent-color); color: white;">Rejouer une autre matière</button>
+         </div><div class="quiz-footer" style="margin-top: 25px; justify-content: center;">
+            <span class="question-counter">Défi Quiz APP . Codé proprement avec passion</span>
+         </div>
+    </div></body> 
+</html>
